@@ -1,0 +1,24 @@
+<ion-view view-title="注册">
+    <ion-content padding="30" ng-controller="RegisterCtrl">
+        <div class="list list-inset" style="margin-left:20px;margin-right:20px;">
+            <label class="item item-input" style="margin-bottom: 20px">
+                <i class="ion-iphone placeholder-icon"></i>
+                <input type="text" ng-model="phone" placeholder="">
+            </label>
+
+            <label class="item item-input" style="margin-bottom: 20px">
+                <i class="ion-image placeholder-icon"></i>
+                <input type="password" ng-model="smsVerifyCode" placeholder="">
+                <button class="button button-assertive" ng-click="sendSms()">
+                    获取
+                </button>
+            </label>
+
+            <label class="item" style="border: none;">
+                <button class="button button-full button-positive" ng-click="register()">
+                    下一步
+                </button>
+            </label>
+        </div>
+    </ion-content>
+</ion-view>
