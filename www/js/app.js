@@ -10,7 +10,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         });
     })
 
-    .config(function($ionicConfigProvider) {
+    .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleText(false);
     })
 
@@ -51,11 +51,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            .state('subjects', {
+                url: '/subjects',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/subjects.html',
+                        controller: 'SubjectsCtrl'
+                    }
+                }
+            })
+            .state('detail', {
+                url: '/subjects/:subjectId',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/subjectDetail.html',
+                        controller: 'SubjectDetailCtrl'
+                    }
+                }
+            })
+
             .state('investment', {
                 url: '/investment',
                 templateUrl: 'templates/investment.html'
             })
-
 
             .state('account', {
                 url: '/accouont',

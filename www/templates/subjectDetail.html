@@ -1,0 +1,37 @@
+<ion-view view-title="项目详情">
+    <ion-content ng-controller="SubjectDetailCtrl" style="padding: 30px">
+
+        <div style="height: 20px;margin-bottom: 10px">
+            <span>{{subject.title}}</span>
+            <span style="position: absolute;right: 10px">{{subject.status}}</span>
+        </div>
+
+        <div style="display: table; height: 60px; width: 100%; margin-bottom: 20px">
+            <div style="display: table-cell; width: 33%; vertical-align: middle; horiz-align: center">
+                <p>年化利率</p>
+                {{subject.annual_rate}}
+            </div>
+
+            <div style="display: table-cell; width: 33%; vertical-align: middle">
+                <p>项目期限</p>
+                {{subject.time_left}}天
+            </div>
+
+            <div style="display: table-cell; vertical-align: middle">
+                <p>项目金额</p>
+                {{subject.amount}}元
+            </div>
+        </div>
+
+        <div style="height: 40px; margin-bottom: 20px">
+            <div>
+                <span>还款方式：{{subject.instal_type}}</span>
+                <span style="position: absolute;right: 20px">起投金额：{{subject.min_inv_amount}}元</span>
+            </div>
+            <div>
+                <span>投资进度：{{subject.cur_inv_amount/subject.amount*100}}%</span>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

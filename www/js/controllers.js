@@ -29,15 +29,21 @@ angular.module('starter.controllers', [])
         };
 
         $scope.register = function () {
-            alert('register!');
             register.registerReq($scope.phone, $scope.smsVerifyCode);
         };
 
         $scope.sendSms = function () {
-            alert('sms!');
             //var phone = $scope.phone;
         };
 
+    })
+
+    .controller('SubjectsCtrl', function($scope, subjects){
+        $scope.subjects = subjects.all();
+    })
+
+    .controller('SubjectDetailCtrl', function($scope, $stateParams, subjects){
+        $scope.subject = subjects.get($stateParams.subjectId);
     })
 
     .controller('BindCtrl', function ($scope) {
