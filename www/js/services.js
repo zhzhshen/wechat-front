@@ -38,39 +38,25 @@ angular.module('starter.services', [])
         }
     })
 
-    .factory('subjects', function () {
-        var subjects = [{
-            id: 1,
-            title: '标的1',
-            status: '募集中',
-            annual_rate: '10.8%',
-            time_left: 23,
-            min_inv_amoun: 1000,
-            amount: 50000,
-            instal_type: '先本后息',
-            cur_inv_amount: 10000
-        },{
-            id: 2,
-            title: '标的2',
-            status: '募集中',
-            annual_rate: '11.6%',
-            time_left: 98,
-            min_inv_amount: 2000,
-            amount: 50000,
-            instal_type: '等额本息',
-            cur_inv_amount: 30000
-        }];
+    .factory('subjects', function ($http) {
+        var subjects;
 
         return {
-            all: function() {
-                return subjects;
+            retrieveSubjects: function () {
+                return $http({
+                    method: 'GET',
+                    url: 'https://pre.quboqu.com/api/subjects'
+                });
             },
-            get: function(subjectId) {
+            get: function (subjectId) {
+                alert(subjects.length);
                 for (var i = 0; i < subjects.length; i++) {
                     if (subjects[i].id === parseInt(subjectId)) {
+                        alert('ok');
                         return subjects[i];
                     }
                 }
+                alert('not ok');
                 return null;
             }
         }

@@ -9,7 +9,7 @@
         <div style="display: table; height: 60px; width: 100%; margin-bottom: 20px">
             <div style="display: table-cell; width: 33%; vertical-align: middle; horiz-align: center">
                 <p>年化利率</p>
-                {{subject.annual_rate}}
+                {{subject.instalmentPolicy.annualRate}}
             </div>
 
             <div style="display: table-cell; width: 33%; vertical-align: middle">
@@ -19,19 +19,36 @@
 
             <div style="display: table-cell; vertical-align: middle">
                 <p>项目金额</p>
-                {{subject.amount}}元
+                {{subject.amount.amount}}元
             </div>
         </div>
 
         <div style="height: 40px; margin-bottom: 20px">
             <div>
-                <span>还款方式：{{subject.instal_type}}</span>
+                <span>还款方式：{{subject.instalmentPolicy.type}}</span>
                 <span style="position: absolute;right: 20px">起投金额：{{subject.min_inv_amount}}元</span>
             </div>
             <div>
-                <span>投资进度：{{subject.cur_inv_amount/subject.amount*100}}%</span>
+                <span>投资进度：{{subject.currentInvestmentAmount.amount/subject.amount.amount*100}}%</span>
             </div>
         </div>
 
     </ion-content>
+
+    <ion-footer-bar style="height: 60px; padding: 10px" class="bar bar-footer">
+
+        <span style="text-align: center;line-height:40px; font-size: large">
+            剩余可投：{{subject.amount-subject.cur_inv_amount}}元
+        </span>
+
+        <div style="height:40px;margin-left:auto;">
+            <button class="button"
+                    style=" margin-right: 10px; float: right; padding-left: 20px; padding-right: 20px; font-size: large"
+                    ng-click="popupAmount()">
+                立即投资
+            </button>
+
+        </div>
+
+    </ion-footer-bar>
 </ion-view>
