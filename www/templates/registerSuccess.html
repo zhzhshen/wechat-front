@@ -1,24 +1,33 @@
-<ion-view view-title="注册">
-    <ion-content padding="30" ng-controller="RegisterCtrl">
-        <div class="list list-inset" style="margin-left:20px;margin-right:20px;">
-            <label class="item item-input" style="margin-bottom: 20px">
-                <div width="25px"><i class="icon ion-person placeholder-icon" padding="25px"></i></div>
-                <input type="text" ng-model="account" placeholder="账号">
-            </label>
-            <label class="item item-input" style="margin-bottom: 20px">
-                <div width="25px"><i class="icon ion-key placeholder-icon" padding="25px"></i></div>
-                <input type="password" ng-model="password" placeholder="密码">
-            </label>
-            <label class="item item-input" style="margin-bottom: 20px">
-                <div width="25px"><i class="icon ion-key placeholder-icon" padding="25px"></i></div>
-                <input type="password" ng-model="confirmPassword" placeholder="确认密码">
-            </label>
-
-            <label class="item" style="border: none;">
-                <button class="button button-full button-positive" ng-click="nextStep()">
-                    下一步
-                </button>
-            </label>
+<ion-view view-title="注册成功">
+    <ion-content style="padding-left: 50px; padding-right: 50px; padding-top: 30px; padding-bottom: 30px;">
+        <div style="margin-bottom: 20px;">
+            <i class="ion-checkmark-circled"></i>
+            <span>注册成功</span>
         </div>
+        <span>为了顺利投资，您还需进行以下认证</span>
+
+        <div style="margin: 30px; border: thin;">
+            <div>
+                <i class="ion-card"></i>
+                <span>实名认证</span>
+            </div>
+
+            <div>
+                <i class="ion-key"></i>
+                <span>交易密码设置</span>
+            </div>
+
+            <div>
+                <i class="ion-card"></i>
+                <span>银行卡认证</span>
+            </div>
+        </div>
+
+        <button class="button button-positive">
+            立即认证
+        </button>
+        <span style="margin-left: 30px; margin-top: 20px;">暂不认证</span>
+        </label>
+
     </ion-content>
 </ion-view>

@@ -26,7 +26,7 @@
         <div style="height: 40px; margin-bottom: 20px">
             <div>
                 <span>还款方式：{{subject.instalmentPolicy.type}}</span>
-                <span style="position: absolute;right: 20px">起投金额：{{subject.min_inv_amount}}元</span>
+                <span style="position: absolute;right: 20px">起投金额：{{subject.currentInvestmentAmount.amount}}元</span>
             </div>
             <div>
                 <span>投资进度：{{subject.currentInvestmentAmount.amount/subject.amount.amount*100}}%</span>
@@ -38,7 +38,7 @@
     <ion-footer-bar style="height: 60px; padding: 10px" class="bar bar-footer">
 
         <span style="text-align: center;line-height:40px; font-size: large">
-            剩余可投：{{subject.amount-subject.cur_inv_amount}}元
+            剩余可投：{{subject.amount.amount-subject.currentInvestmentAmount.amount}}元
         </span>
 
         <div style="height:40px;margin-left:auto;">

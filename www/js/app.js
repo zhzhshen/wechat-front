@@ -51,6 +51,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            .state('register.success', {
+                url: '/success',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/registerSuccess.html'
+                    }
+
+                }
+            })
+
             .state('subjects', {
                 url: '/subjects',
                 views: {

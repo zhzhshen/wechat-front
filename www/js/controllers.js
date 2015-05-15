@@ -23,13 +23,16 @@ angular.module('starter.controllers', [])
                 });
             } else {
                 register.stash($scope.account, $scope.password);
-                $state.go('register.step2')
+                $state.go('register.step2');
                 //$location.path("/register/step2")
             }
         };
 
         $scope.register = function () {
-            register.registerReq($scope.phone, $scope.smsVerifyCode);
+            //register.registerReq($scope.phone, $scope.smsVerifyCode).then(function(){
+            //    alert('success');
+            //});
+            $state.go('register.success');
         };
 
         $scope.sendSms = function () {
@@ -38,8 +41,8 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('SubjectsCtrl', function ($scope, subjects, $http) {
-        subjects.retrieveSubjects().then(function(data){
+    .controller('SubjectsCtrl', function ($scope, subjects) {
+        subjects.retrieveSubjects().then(function (data) {
             $scope.subjects = angular.fromJson(data.data).items;
         });
 
@@ -53,7 +56,7 @@ angular.module('starter.controllers', [])
         //});
     })
 
-    .controller('SubjectDetailCtrl', function ($scope, $stateParams, subjects, $ionicPopup) {
+    .controller('SubjectDetailCtrl', function ($scope, $stateParams, subjects, $ionicPopup, $timeout) {
 
         //$http({
         //    method: 'GET',
@@ -71,7 +74,7 @@ angular.module('starter.controllers', [])
         //    alert("error");
         //});
 
-        subjects.retrieveSubjects().then(function(data){
+        subjects.retrieveSubjects().then(function (data) {
             var subjects = angular.fromJson(data.data).items;
             for (var i = 0; i < subjects.length; i++) {
                 if (subjects[i].id == parseInt($stateParams.subjectId)) {
@@ -86,12 +89,30 @@ angular.module('starter.controllers', [])
         $scope.popupAmount = function () {
             var myPopup = $ionicPopup.show({
                 templateUrl: 'templates/popupChooseAmount.html',
-                scope: $scope
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>确认投资</b>',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            myPopup.close();
+                            e.preventDefault();
+
+                        }
+                    }
+                ]
             });
             myPopup.then(function (res) {
                 console.log('Tapped!', res);
             });
-        }
+            //$timeout(function () {
+            //    myPopup.close();
+            //}, 3000);
+        };
+        //
+        //$scope.closePopup = function () {
+        //    myPopup.closePopup();
+        //}
     })
 
     .controller('BindCtrl', function ($scope) {

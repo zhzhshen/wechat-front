@@ -20,20 +20,8 @@ angular.module('starter.services', [])
                         'smsVerifyCode': smsVerifyCode
                     }
                 };
-
-                //$http.get("https://pre.quboqu.com/api/subjects?callback=JSON_CALLBACK")
-                $http(req)
-                    .success(function (response, data, status) {
-                        alert('success');
-                        //$scope.data = response;
-                        //$scope.status = status;
-                        //$scope.result = "success:";
-                    }).error(function (response, data, status, headers, config) {
-                        alert('fail');
-                        //$scope.data = data || "Request failed";
-                        //$scope.status = status;
-                        //$scope.result = "error:";
-                    });
+                //alert(account + '+' + password + '+' + phone + '+' + smsVerifyCode);
+                return $http(req);
             }
         }
     })
