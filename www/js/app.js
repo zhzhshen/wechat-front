@@ -70,12 +70,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     }
                 }
             })
-            .state('detail', {
-                url: '/subjects/:subjectId',
+            .state('subjects.detail', {
+                url: '/:subjectId',
                 views: {
                     '@': {
                         templateUrl: 'templates/subjectDetail.html',
                         controller: 'SubjectDetailCtrl'
+                    }
+                }
+            })
+
+            .state('subjects.investConfirm', {
+                url: '/investConfirm',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/investConfirm.html',
+                        controller: 'InvestConfirmCtrl'
                     }
                 }
             })

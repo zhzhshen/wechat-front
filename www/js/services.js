@@ -20,7 +20,6 @@ angular.module('starter.services', [])
                         'smsVerifyCode': smsVerifyCode
                     }
                 };
-                //alert(account + '+' + password + '+' + phone + '+' + smsVerifyCode);
                 return $http(req);
             }
         }

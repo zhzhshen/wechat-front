@@ -1,0 +1,21 @@
+<ion-view view-title="投资确认">
+    <ion-content ng-controller="InvestConfirmCtrl" style="padding: 30px;">
+        <div>
+            <span>投资金额：{{amount}}元</span>
+        </div>
+        <div>
+            <span>可用余额：{{balance}}元</span>
+        </div>
+
+        <div>
+            <i class="ion-key"></i>
+            <input placeholder="请输入交易密码">
+        </div>
+
+        <div>
+            <ion-checkbox ng-model="isChecked">已阅读并同意本协议</ion-checkbox>
+        </div>
+
+        <button class="button button-assertive">立即投资</button>
+    </ion-content>
+</ion-view>

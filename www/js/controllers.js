@@ -24,7 +24,6 @@ angular.module('starter.controllers', [])
             } else {
                 register.stash($scope.account, $scope.password);
                 $state.go('register.step2');
-                //$location.path("/register/step2")
             }
         };
 
@@ -45,35 +44,9 @@ angular.module('starter.controllers', [])
         subjects.retrieveSubjects().then(function (data) {
             $scope.subjects = angular.fromJson(data.data).items;
         });
-
-        //$http({
-        //    method: 'GET',
-        //    url: 'https://pre.quboqu.com/api/subjects'
-        //}).success(function (data) {
-        //    $scope.subjects = angular.fromJson(data).items;
-        //}).error(function () {
-        //    alert("error");
-        //});
     })
 
-    .controller('SubjectDetailCtrl', function ($scope, $stateParams, subjects, $ionicPopup, $timeout) {
-
-        //$http({
-        //    method: 'GET',
-        //    url: 'https://pre.quboqu.com/api/subjects'
-        //}).success(function (data) {
-        //    var subjects = angular.fromJson(data).items;
-        //    alert('ok');
-        //    for (var i = 0; i < subjects.length; i++) {
-        //        if (subjects[i].id === parseInt(subjectId)) {
-        //            $scope.subject = subjects[i];
-        //            alert('success');
-        //        }
-        //    }
-        //}).error(function () {
-        //    alert("error");
-        //});
-
+    .controller('SubjectDetailCtrl', function ($scope, $stateParams, subjects, $ionicPopup, $state) {
         subjects.retrieveSubjects().then(function (data) {
             var subjects = angular.fromJson(data.data).items;
             for (var i = 0; i < subjects.length; i++) {
@@ -83,20 +56,18 @@ angular.module('starter.controllers', [])
             }
         });
 
-
-        //$scope.subject = subjects.get($stateParams.subjectId);
-
         $scope.popupAmount = function () {
             var myPopup = $ionicPopup.show({
                 templateUrl: 'templates/popupChooseAmount.html',
                 scope: $scope,
                 buttons: [
                     {
-                        text: '<b>确认投资</b>',
+                        text: '<b>立即投资</b>',
                         type: 'button-positive',
                         onTap: function (e) {
                             myPopup.close();
-                            e.preventDefault();
+                            $state.go('subjects.investConfirm');
+                            //e.preventDefault();
 
                         }
                     }
@@ -105,14 +76,11 @@ angular.module('starter.controllers', [])
             myPopup.then(function (res) {
                 console.log('Tapped!', res);
             });
-            //$timeout(function () {
-            //    myPopup.close();
-            //}, 3000);
         };
-        //
-        //$scope.closePopup = function () {
-        //    myPopup.closePopup();
-        //}
+    })
+
+    .controller('InvestConfirmCtrl', function() {
+
     })
 
     .controller('BindCtrl', function ($scope) {
