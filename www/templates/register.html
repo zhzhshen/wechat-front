@@ -1,48 +1,48 @@
 <ion-view view-title="注册">
     <div ui-view="registerContent">
-        <ion-content ng-controller="RegisterCtrl">
+        <ion-content ng-controller="RegisterCtrl" style="height: 100%;">
             <div class="statusHeader">
                 <div style="height: 52px; padding-top: 28px;">
                     <div style="padding-left: 13px; display: inline;color:#f3930a;">验证手机</div>
                     <div style="padding-left: 55px; display: inline;color:#cccfcd;">设置密码</div>
                     <div style="padding-left: 80px; display: inline;color:#cccfcd;">成功</div>
                 </div>
+                    <img src="img/squareActive.png" class="square" style="position: absolute; left: 33px;">
 
-                <div>
-                    <div style="width:33px;height:1px;margin:0px auto;padding:0px;background-color:#e3dcd3;display: inline-flex;"></div>
-                    <div style="width:33px;height:1px;margin:0px auto;padding:0px;background-color:#e3dcd3;display: inline-flex;"></div>
-                    <div style="width:33px;height:1px;margin:0px auto;padding:0px;background-color:#e3dcd3;display: inline-flex;"></div>
-                </div>
+                    <div class="statusLine" style="width:110px;height:1px;left:45px;"></div>
+                    <img src="img/squareInactive.png" class="square" style="position: absolute; left: 150px;">
+
+                    <div class="statusLine" style="width:115px;height:1px;left: 162px;"></div>
+                    <img src="img/squareInactive.png" class="square" style="position: absolute; left: 275px;">
             </div>
 
             <div class="list list-inset myList">
                 <div class="item item-input listItem">
-                    <div><i class="icon ion-person placeholder-icon"></i></div>
+                    <!--<div><i class="icon ion-person placeholder-icon"></i></div>-->
                     <input type="text" ng-model="account" placeholder="请输入账号">
                 </div>
 
                 <div class="listLine"></div>
 
                 <div class="item item-input listItem">
-                    <div><i class="icon ion-key placeholder-icon" padding="25px"></i></div>
+                    <!--<div><i class="icon ion-key placeholder-icon" padding="25px"></i></div>-->
                     <input type="password" ng-model="password" placeholder="请输入密码">
                 </div>
 
                 <div class="listLine"></div>
 
                 <div class="item item-input listItem">
-                    <div><i class="icon ion-key placeholder-icon" padding="25px"></i></div>
+                    <!--<div><i class="icon ion-key placeholder-icon" padding="25px"></i></div>-->
                     <input type="password" ng-model="confirmPassword" placeholder="请再次输入密码">
                 </div>
-
+            </div>
+            <div class="downSection">
                 <div class="listLine"></div>
+                <button class="singleButton"
+                        ng-click="nextStep()">
+                    下一步
+                </button>
 
-                <div class="item buttonItem">
-                    <button class="singleButton"
-                            ng-click="nextStep()">
-                        下一步
-                    </button>
-                </div>
             </div>
         </ion-content>
     </div>
