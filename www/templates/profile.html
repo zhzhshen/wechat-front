@@ -1,0 +1,65 @@
+<ion-view view-title="个人账户详情">
+    <ion-content ng-controller="ProfileCtrl" scroll="true">
+        <div class="item item-avatar" style="height: 140px;">
+            <img src="img/ionic.png" style="max-width: 100px; max-height: 100px;">
+
+            <div style="margin-left: 60px; padding-top: 20px;">
+                <h2>Wala</h2>
+                <i class="ion-iphone"></i>
+                <i class="ion-ios-person"></i>
+                <i class="ion-locked"></i>
+
+                <p>账户余额：{{}}元</p>
+            </div>
+        </div>
+
+        <div class="item" style="padding: 0px;background-color: white;">
+            <button class="button" style="width: 50%;padding: 0px;border-width: 0px;">充值</button>
+            <button class="button" style="width: 50%;padding: 0px;border-width: 0px;">取现</button>
+        </div>
+
+        <div style="height: 20px; background-color: #f8f8f8;"></div>
+
+        <div class="item"
+             style="padding: 0px; padding-top: 10px; padding-bottom: 10px; display: table;width: 100%;">
+            <div style="display:table-cell;width: 33%; text-align: center; border-right: solid; border-right-width: thin; border-color: lightgrey;">
+                <i class="ion-social-yen">投资金额</i>
+
+                <p style="margin-bottom: 10px;">{{amount}}元</p>
+            </div>
+
+            <div style="display:table-cell;width: 33%; text-align: center; border-right: solid; border-right-width: thin; border-color: lightgrey;">
+                <i class="ion-ios-paperplane"></i>期待收益
+                <p>{{amount}}元</p>
+            </div>
+
+            <div style="display:table-cell;width: 33%; text-align: center;">
+                <i class="ion-cash"></i>已收收益
+                <p>{{amount}}元</p>
+            </div>
+        </div>
+
+        <div style="height: 40px; background-color: #f8f8f8; padding-left: 10px;padding-top: 10px;">
+            我的投资
+        </div>
+
+        <ion-list>
+            <div style="display: table; width: 100%; margin: 10px;">
+                <div style="display: table-cell; width: 20%;">金额</div>
+                <div style="display: table-cell; width: 25%;">利率</div>
+                <div style="display: table-cell; width: 35%;">还款日</div>
+                <div style="display: table-cell; width: 20%;">进度</div>
+            </div>
+
+            <ion-item class="item-remove-animate item-icon-right"
+                      style="display: table; width: 100%; padding: 10px;">
+                <div style="display: table-cell; width: 20%;">金额</div>
+                <div style="display: table-cell; width: 25%;">利率</div>
+                <div style="display: table-cell; width: 35%;">还款日</div>
+                <div style="display: table-cell; width: 20%;">进度</div>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-view>

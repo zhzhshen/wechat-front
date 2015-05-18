@@ -90,14 +90,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
-            .state('investment', {
-                url: '/investment',
-                templateUrl: 'templates/investment.html'
+            .state('profile', {
+                url: '/profile',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/profile.html',
+                        controller: 'ProfileCtrl'
+                    }
+                }
             })
 
-            .state('account', {
-                url: '/accouont',
-                templateUrl: 'templates/account.html'
+            .state('mySubjects', {
+                url: '/mySubjects',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/mySubjects.html',
+                        controller: 'MySubjectsCtrl'
+                    }
+                }
             });
 
         // if none of the above states are matched, use this as the fallback

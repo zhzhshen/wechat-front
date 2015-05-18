@@ -83,6 +83,14 @@ angular.module('starter.controllers', [])
 
     })
 
+    .controller('ProfileCtrl', function() {
+
+    })
+
+    .controller('MySubjectsCtrl', function() {
+
+    })
+
     .controller('BindCtrl', function ($scope) {
 
     });
