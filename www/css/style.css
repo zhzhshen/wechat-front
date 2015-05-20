@@ -9,7 +9,7 @@ div.statusHeader {
 
 div.downSection {
     background-color: #f7f4f0;
-    height: 100%;
+    bottom: 0px;
 }
 
 .statusLine {

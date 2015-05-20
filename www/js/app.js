@@ -90,6 +90,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            .state('mobileCheck', {
+                url: '/mobileCheck/:openId',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/mobileCheck.html',
+                        controller: 'MobileCtrl'
+                    }
+                }
+            })
+
             .state('profile', {
                 url: '/profile',
                 views: {

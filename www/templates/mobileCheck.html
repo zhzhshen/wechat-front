@@ -1,0 +1,17 @@
+<ion-view view-title="手机号">
+    <ion-content ng-controller="RegisterCtrl" style="height: 100%;">
+        <div class="list list-inset myList">
+            <div class="item item-input listItem">
+                <i class="ion-iphone placeholder-icon"></i>
+                <input type="text" ng-model="phone" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="downSection">
+            <div class="listLine"></div>
+            <button class="singleButton"
+                    ng-click="nextStep()">
+                下一步
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

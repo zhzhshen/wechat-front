@@ -79,6 +79,10 @@ angular.module('starter.controllers', [])
         };
     })
 
+    .controller('MobileCtrl', function($scope, $stateParams, bind) {
+        bind.setOpenId($stateParams.openId);
+    })
+
     .controller('InvestConfirmCtrl', function() {
 
     })

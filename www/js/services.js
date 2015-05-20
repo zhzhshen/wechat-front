@@ -1,4 +1,14 @@
 angular.module('starter.services', [])
+    .factory('bind', function() {
+        var openId;
+
+        return {
+            setOpenId : function(id) {
+                openId = id;
+            }
+        }
+    })
+
     .factory('register', function () {
         var account;
         var password;
@@ -21,6 +31,14 @@ angular.module('starter.services', [])
                     }
                 };
                 return $http(req);
+            }
+        }
+    })
+
+    .factory('users', function ($http) {
+        return {
+            isUserExists: function () {
+
             }
         }
     })
