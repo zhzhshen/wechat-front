@@ -79,8 +79,18 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('MobileCtrl', function($scope, $stateParams, bind) {
-        bind.setOpenId($stateParams.openId);
+    .controller('MobileCtrl', function($scope, $stateParams, users, $state) {
+        users.setOpenId($stateParams.openId);
+
+        $scope.nextStep = function() {
+            users.checkPhoneDuplication(phone).then(function(status){
+                if(status==400) {
+                    alert('手机号已注册');
+                } else {
+                    $state.go('register');
+                }
+            });
+        }
     })
 
     .controller('InvestConfirmCtrl', function() {

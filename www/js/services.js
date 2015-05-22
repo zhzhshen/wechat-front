@@ -1,15 +1,43 @@
 angular.module('starter.services', [])
-    .factory('bind', function() {
+    .factory('users', function() {
         var openId;
+        var phone;
 
         return {
             setOpenId : function(id) {
                 openId = id;
+            },
+
+            getOpenId : function() {
+                return openId;
+            },
+
+            checkBidingStatus : function(id, $http) {
+                var req = {
+                    method: 'POST',
+                    url: 'https://pre.quboqu.com/ums/users/wechat-binding-validation',
+                    data: {
+                        'openId': id
+                    }
+                };
+                return $http(req);
+            },
+
+            checkPhoneDuplication : function(phone, $http) {
+                this.phone = phone;
+                var req = {
+                    method: 'POST',
+                    url: 'https://pre.quboqu.com/ums/users/phone-duplication-verification',
+                    data: {
+                        'phone': phone
+                    }
+                };
+                return $http(req);
             }
         }
     })
 
-    .factory('register', function () {
+    .factory('register', function (users) {
         var account;
         var password;
 
@@ -31,14 +59,6 @@ angular.module('starter.services', [])
                     }
                 };
                 return $http(req);
-            }
-        }
-    })
-
-    .factory('users', function ($http) {
-        return {
-            isUserExists: function () {
-
             }
         }
     })

@@ -13,7 +13,11 @@ div.downSection {
 }
 
 .statusLine {
-    top: 58px;position: absolute;margin:0px;padding:0px;background-color:#e3dcd3;
+    top: 58px;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    background-color: #e3dcd3;
 }
 
 img.square {
@@ -65,4 +69,62 @@ button.inputButton {
     margin: 3px;
     padding: auto;
     background-color: #f0ebe5;
+}
+
+.tableHeader {
+    display: table-row;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    color: #BFB0A3;
+    border-bottom: solid;
+    border-bottom-color: #e3dcd3;
+    border-bottom-width: 1px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.headerCell {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    display: table-cell;
+    text-align: center;
+    margin: 0px;
+    /*border-bottom: solid;*/
+    /*border-bottom-color: #e3dcd3;*/
+    /*border-bottom-width: 1px;*/
+}
+
+.secondColumn {
+    width: 60px;
+}
+
+.thirdColumn {
+    width: 100px;
+}
+
+.lastColumn {
+    width: 60px;
+}
+
+.tableRow {
+    display: table-row;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    color: #403B36;
+    border-bottom: solid;
+    border-bottom-color: #e3dcd3;
+    border-bottom-width: 1px;
+}
+
+.tableCell {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: table-cell;
+    text-align: center;
+    margin: 0px;
+    /*border-bottom: solid;*/
+    /*border-bottom-color: #e3dcd3;*/
+    /*border-bottom-width: 1px;*/
 }

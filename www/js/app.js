@@ -110,6 +110,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            .state('myInvestments',{
+                url: '/myInvestments',
+                views: {
+                    '@' : {
+                        templateUrl: 'templates/myInvestments.html'
+                    }
+                }
+            })
+
             .state('mySubjects', {
                 url: '/mySubjects',
                 views: {
