@@ -1,5 +1,5 @@
 angular.module('starter.services', [])
-    .factory('users', function() {
+    .factory('users', function($http) {
         var openId;
         var phone;
 
@@ -12,7 +12,7 @@ angular.module('starter.services', [])
                 return openId;
             },
 
-            checkBidingStatus : function(id, $http) {
+            checkBidingStatus : function(id) {
                 var req = {
                     method: 'POST',
                     url: 'https://pre.quboqu.com/ums/users/wechat-binding-validation',
@@ -23,7 +23,7 @@ angular.module('starter.services', [])
                 return $http(req);
             },
 
-            checkPhoneDuplication : function(phone, $http) {
+            checkPhoneDuplication : function(phone) {
                 this.phone = phone;
                 var req = {
                     method: 'POST',

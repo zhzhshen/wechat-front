@@ -119,6 +119,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
+            .state('transactionHistory', {
+                url: '/transactionHistory',
+                views: {
+                    '@' : {
+                        templateUrl: 'templates/transactionHistory.html'
+                    }
+                }
+            })
+
             .state('mySubjects', {
                 url: '/mySubjects',
                 views: {

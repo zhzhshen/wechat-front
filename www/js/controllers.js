@@ -83,7 +83,7 @@ angular.module('starter.controllers', [])
         users.setOpenId($stateParams.openId);
 
         $scope.nextStep = function() {
-            users.checkPhoneDuplication(phone).then(function(status){
+            users.checkPhoneDuplication($scope.phone).then(function(status){
                 if(status==400) {
                     alert('手机号已注册');
                 } else {
@@ -97,7 +97,14 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('ProfileCtrl', function() {
+    .controller('ProfileCtrl', function($scope, $state) {
+        $scope.myInvestments = function() {
+            $state.go('myInvestments');
+        }
+
+        $scope.transactionHistory = function() {
+            $state.go('transactionHistory');
+        }
 
     })
 
