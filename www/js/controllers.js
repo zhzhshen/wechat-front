@@ -1,10 +1,16 @@
 angular.module('starter.controllers', [])
     .controller('RegisterCtrl', function ($scope, $http, $ionicPopup, $location, register, $state, users, bind) {
         $scope.validateSMSCode = function () {
-            if ($scope.smsVerifyCode == null) {
+            var code = $scope.smsVerifyCode;
+            if (code == null || code == '') {
                 $ionicPopup.alert({
                     title: '错误',
                     template: '请输入短信验证码'
+                });
+            } else if (isNaN(code) || code.length != 6) {
+                $ionicPopup.alert({
+                    title: '错误',
+                    template: '短信验证码格式错误'
                 });
             } else {
                 register.validateSMSCode($scope.smsVerifyCode).then(function success(resp) {
@@ -20,7 +26,8 @@ angular.module('starter.controllers', [])
 
         $scope.register = function () {
             var pwd = $scope.password;
-            if (pwd == null) {
+
+            if (pwd == null || pwd == '') {
                 $ionicPopup.alert({
                     title: '错误',
                     template: '请输入密码'
@@ -34,6 +41,11 @@ angular.module('starter.controllers', [])
                 $ionicPopup.alert({
                     title: '错误',
                     template: '两次输入密码不一致'
+                });
+            } else if (!isNaN(pwd) || pwd.length < 8) {
+                $ionicPopup.alert({
+                    title: '错误',
+                    template: '密码格式错误'
                 });
             } else {
                 register.register(users.getPhone(), pwd).then(function success(resp) {
@@ -110,7 +122,7 @@ angular.module('starter.controllers', [])
 
         $scope.nextStep = function () {
             var phone = $scope.phone;
-            if (phone == null || phone=='') {
+            if (phone == null || phone == '') {
                 $ionicPopup.alert({
                     title: '错误',
                     template: '请输入手机号'
@@ -164,12 +176,18 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('BindCtrl', function ($scope, bind, users) {
+    .controller('BindCtrl', function ($scope, bind, users, $ionicPopup) {
         $scope.bind = function () {
-            if ($scope.password == null) {
+            var pwd = $scope.password;
+            if (pwd == null || pwd == '') {
                 $ionicPopup.alert({
                     title: '错误',
                     template: '请输入密码'
+                });
+            } else if (!isNaN(pwd) || pwd.length < 8) {
+                $ionicPopup.alert({
+                    title: '错误',
+                    template: '密码格式错误'
                 });
             } else {
                 users.login($scope.password).then(function success() {
