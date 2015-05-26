@@ -1,48 +1,58 @@
 <ion-view view-title="注册成功">
-    <ion-content>
+    <ion-content style="background-color: #f7f4f0;">
         <div class="statusHeader">
             <div style="height: 52px; padding-top: 28px;">
                 <div style="padding-left: 13px; display: inline;color:#cccfcd;">验证手机</div>
                 <div style="padding-left: 55px; display: inline;color:#cccfcd;">设置密码</div>
                 <div style="padding-left: 80px; display: inline;color:#f3930a;">成功</div>
             </div>
-            <img src="img/squareInactive.png" class="square" style="position: absolute; left: 33px;">
+            <img src="img/polygon-g.png" class="square" style="position: absolute; left: 33px;">
 
             <div class="statusLine" style="width:110px;height:1px;left:45px;"></div>
-            <img src="img/squareInactive.png" class="square" style="position: absolute; left: 150px;">
+            <img src="img/polygon-g.png" class="square" style="position: absolute; left: 150px;">
 
             <div class="statusLine" style="width:115px;height:1px;left: 162px;"></div>
-            <img src="img/squareActive.png" class="square" style="position: absolute; left: 275px;">
+            <img src="img/polygon-o.png" class="square" style="position: absolute; left: 275px;">
         </div>
 
-        <div style="margin-bottom: 20px;">
-            <i class="ion-checkmark-circled"></i>
-            <span>注册成功</span>
+        <div style="padding-top: 2px;text-align: center;font-size: 18px;">
+            <img src="img/right.png" height="20px" width="20px">
+            恭喜，已成功注册账户!
         </div>
-        <span>为了顺利投资，您还需进行以下认证</span>
-
-        <div style="margin: 30px; border: thin;">
-            <div>
-                <i class="ion-card"></i>
-                <span>实名认证</span>
-            </div>
-
-            <div>
-                <i class="ion-key"></i>
-                <span>交易密码设置</span>
-            </div>
-
-            <div>
-                <i class="ion-card"></i>
-                <span>银行卡认证</span>
-            </div>
+        <div style="padding-top: 24px;margin-bottom: 12px;text-align: center;font-size: 16px;color: #BFB0A3;">
+            <span>为了顺利投资，还需完成以下认证</span>
         </div>
 
-        <button class="button button-positive">
-            立即认证
+        <div class="list list-inset myList">
+            <div class="item item-input listItem" style="padding-left: 2px;padding-right: 2px;">
+                <div style="display: inline-block; width: 20px;">
+                    <i class="ion-card"></i>
+                </div>
+                <div>实名认证</div>
+                <div style="margin-left:auto; margin-right:0px;font-size: 14px;color: #BFB0A3;">实名用户方可投资</div>
+            </div>
+            <div class="item item-input listItem" style="padding-left: 2px;padding-right: 2px;">
+                <div style="display: inline-block; width: 20px;">
+                    <i class="ion-card"></i>
+                </div>
+                <span>银行卡绑定</span>
+                <div style="margin-left:auto; margin-right:0px;font-size: 14px;color: #BFB0A3;">保障资金安全</div>
+            </div>
+            <div class="item item-input listItem" style="padding-left: 2px;padding-right: 2px; border: none;">
+                <div style="display: inline-block; width: 20px;">
+                    <i class="ion-key"></i>
+                </div>
+                <span>交易密码</span>
+                <div style="margin-left:auto; margin-right:0px;font-size: 14px;color: #BFB0A3;">交易安全屏障</div>
+            </div>
+        </div>
+
+        <button class="singleButton" style="margin-top: 24px;">
+            开始认证
         </button>
-        <span style="margin-left: 30px; margin-top: 20px;">暂不认证</span>
-        </label>
+        <div style="text-align: center;padding-top: 12px;font-size:18px;">
+            暂不认证
+        </div>
 
     </ion-content>
 </ion-view>

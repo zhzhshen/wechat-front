@@ -1,38 +1,31 @@
 <ion-view view-title="注册">
-    <ion-content ng-controller="RegisterCtrl">
+    <ion-content ng-controller="RegisterCtrl" style="background-color: #f7f4f0;">
         <div class="statusHeader">
             <div style="height: 52px; padding-top: 28px;">
                 <div style="padding-left: 13px; display: inline;color:#cccfcd;">验证手机</div>
                 <div style="padding-left: 55px; display: inline;color:#f3930a;">设置密码</div>
                 <div style="padding-left: 80px; display: inline;color:#cccfcd;">成功</div>
             </div>
-            <img src="img/squareInactive.png" class="square" style="position: absolute; left: 33px;">
+            <img src="img/polygon-g.png" class="square" style="position: absolute; left: 33px;">
 
             <div class="statusLine" style="width:110px;height:1px;left:45px;"></div>
-            <img src="img/squareActive.png" class="square" style="position: absolute; left: 150px;">
+            <img src="img/polygon-o.png" class="square" style="position: absolute; left: 150px;">
 
             <div class="statusLine" style="width:115px;height:1px;left: 162px;"></div>
-            <img src="img/squareInactive.png" class="square" style="position: absolute; left: 275px;">
+            <img src="img/polygon-g.png" class="square" style="position: absolute; left: 275px;">
         </div>
 
         <div class="list list-inset myList">
             <div class="item item-input listItem">
-                <i class="ion-iphone placeholder-icon"></i>
-                <input type="text" ng-model="phone" placeholder="请输入手机号">
+                <input type="password" ng-model="password" placeholder="请输入密码">
             </div>
-            <div class="listLine"></div>
 
-            <div class="item item-input listItem">
-                <i class="ion-image placeholder-icon"></i>
-                <input type="password" ng-model="smsVerifyCode" placeholder="手机验证码">
-                <button class="inputButton" ng-click="sendSms()">
-                    获取验证码
-                </button>
+            <div class="item item-input listItem" style="border: none;">
+                <input type="password" ng-model="confirmPassword" placeholder="请再次输入密码">
             </div>
         </div>
 
         <div class="downSection">
-            <div class="listLine"></div>
             <button class="singleButton" ng-click="register()">
                 下一步
             </button>

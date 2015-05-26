@@ -2,9 +2,9 @@
 div.statusHeader {
     height: 86px;
     background-color: #f7f4f0;
-    border-bottom-color: #f0ebe5;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
+    /*border-bottom-color: #f0ebe5;*/
+    /*border-bottom-width: 1px;*/
+    /*border-bottom-style: solid;*/
 }
 
 div.downSection {
@@ -33,6 +33,7 @@ button.singleButton {
     background-color: #f5a328;
     color: white;
     font-weight: bold;
+    font-size: 18px;
     border-radius: 5px;
     border: none;
     border-bottom-style: solid;
@@ -55,12 +56,20 @@ button.inputButton {
     margin-top: 0px;
     margin-bottom: 0px;
     padding: 0px;
+    border-style: solid;
+    border-color: #e3dcd3;
+    border-width: 1px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .listItem {
     height: 50px;
     border-style: none;
     padding: 5px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    padding-left: 15px;
 }
 
 .listLine {

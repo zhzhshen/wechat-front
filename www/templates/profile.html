@@ -1,7 +1,7 @@
-<ion-view view-title="个人账户详情">
+<ion-view view-title="个人账户详情" xmlns:color="http://www.w3.org/1999/xhtml">
     <ion-content ng-controller="ProfileCtrl" scroll="true">
         <div class="item item-avatar" style="height: 140px;">
-            <img src="img/ionic.png" style="max-width: 100px; max-height: 100px; left: 20px;">
+            <img src="img/user.png" style="max-width: 100px; max-height: 100px; left: 20px;">
 
             <div style="left: 134px; position: absolute;">
                 <h2 style="padding-top: 15px; margin-bottom: 10px;font-size: 18px;">Wala</h2>
@@ -16,12 +16,14 @@
         <div class="item"
              style="padding: 0px;background-color: white; height: 42px; display: table;width: 100%;border-collapse: collapse;border: none;margin: 0px;font-weight: bold;">
             <div class="button"
-               style="display: table-cell;width: 50%;min-height:42px;padding: 0px;border-width: 0px;background-color: #f5a328;color: white;font-size: 18px;">
+                 style="display: table-cell;width: 50%;min-height:42px;padding: 0px;border-width: 0px;background-color: #f5a328;color: white;font-size: 18px;">
+                <img src="img/package.png" height="20px" width="20px" style="margin-top: 13px;">
                 充值
             </div>
 
             <div class="button"
-               style="display: table-cell;width: 50%;padding: 0px;border-width: 0px;background-color: #f5a328;color: white;font-size: 18px;border-left: solid;border-left-width: 1px;">
+                 style="display: table-cell;width: 50%;padding: 0px;border-width: 0px;background-color: #f5a328;color: white;font-size: 18px;border-left: solid;border-left-width: 1px;">
+                <img src="img/withdraw.png" height="20px" width="20px" style="margin-top: 13px;">
                 取现
             </div>
         </div>
@@ -32,25 +34,33 @@
              style="display: table;width: 100%;border-collapse: collapse;border: none;border-top:solid;border-top-color: lightgrey;border-top-width: 1px;margin:0px;font-size: 18px;font-weight: bold;">
             <div style="display: table-row; height: 90px;border-bottom: solid;border-bottom-color: lightgrey;border-bottom-width: 1px;">
                 <div style="display:table-cell;padding-top:20px;text-align: center; border-right:solid;border-right-color: lightgrey;border-right-width:1px;">
-                    <i class="ion-social-yen" style="color: #00a7f7;">总资产</i>
+                    <!--<i class="ion-social-yen" style="color: #00a7f7;">总资产</i>-->
+                    <img src="img/package.png" height="18px" width="18px" style="position: relative; top: 3px;">
+                    <span style="color:#00a7f7;">总资产</span>
 
                     <div style="padding-top: 10px;">{{amount}}元</div>
                 </div>
 
                 <div style="display:table-cell;text-align: center;">
-                    <i class="ion-ios-paperplane" style="color: #fe7317;">已投金额</i>
+                    <!--<i class="ion-ios-paperplane" style="color: #fe7317;">已投金额</i>-->
+                    <img src="img/investment-o.png" height="18px" width="18px" style="position: relative; top: 3px;">
+                    <span style="color:#fe7317;">已投金额</span>
 
                     <div style="padding-top: 10px;">{{amount}}元</div>
                 </div>
             </div>
             <div style="display: table-row; height: 90px;">
                 <div style="display:table-cell; padding-top: 20px; text-align: center;border-right:solid;border-right-color: lightgrey;border-right-width:1px;">
-                    <i class="ion-cash" style="color: #a0b2c0;">待收收益</i>
+                    <!--<i class="ion-cash" style="color: #a0b2c0;">待收收益</i>-->
+                    <img src="img/investment-g.png" height="18px" width="18px" style="position: relative; top: 3px;">
+                    <span style="color:#a0b2c0;">待收收益</span>
 
                     <div style="padding-top: 10px;">{{amount}}元</div>
                 </div>
                 <div style="display:table-cell; text-align: center;">
-                    <i class="ion-cash" style="color: #89c540;">已赚收益</i>
+                    <!--<i class="ion-cash" style="color: #89c540;">已赚收益</i>-->
+                    <img src="img/cheer.png" height="18px" width="18px" style="position: relative; top: 3px;">
+                    <span style="color:#89c540;">已赚收益</span>
 
                     <div style="padding-top: 10px;">{{amount}}元</div>
                 </div>
@@ -59,12 +69,17 @@
 
         <div style="height: 12px; background-color: #f8f8f8;border-top: solid; border-top-color: lightgrey;border-top-width: 1px;"></div>
 
-        <div class="myList" style="margin: 0px; padding:0px; padding-left: 13px; padding-right:13px;border: solid; border-color: lightgrey; border-width: 1px 0px 1px 0px;">
-            <div class="item" style="height: 50px; padding: 0px;padding-top: 13px;border:solid; border-color: lightgrey;border-width: 1px 0px 1px 0px;" ng-click="myInvestments()">
+        <div class="myList"
+             style="margin: 0px; padding:0px; padding-left: 13px; padding-right:13px;border: solid; border-color: lightgrey; border-width: 1px 0px 1px 0px;">
+            <div class="item"
+                 style="height: 50px; padding: 0px;padding-top: 13px;border:solid; border-color: lightgrey;border-width: 1px 0px 1px 0px;"
+                 ng-click="myInvestments()">
                 <span>我的投资 (23)</span>
                 <i class="ion-chevron-right" style="color: #e3dcd3;float: right;"></i>
             </div>
-            <div class="item" style="height: 50px; padding: 0px;padding-top: 13px;border:solid; border-color: lightgrey;border-width: 1px 0px 1px 0px;" ng-click="transactionHistory()">
+            <div class="item"
+                 style="height: 50px; padding: 0px;padding-top: 13px;border:solid; border-color: lightgrey;border-width: 1px 0px 1px 0px;"
+                 ng-click="transactionHistory()">
                 <span>资金记录 (123)</span>
                 <i class="ion-chevron-right" style="color: #e3dcd3;float: right;"></i>
             </div>

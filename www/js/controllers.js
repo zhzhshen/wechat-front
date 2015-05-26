@@ -1,12 +1,26 @@
 angular.module('starter.controllers', [])
-    .controller('RegisterCtrl', function ($scope, $http, $ionicPopup, $location, register, $state) {
-        $scope.nextStep = function () {
-            if ($scope.account == null) {
+    .controller('RegisterCtrl', function ($scope, $http, $ionicPopup, $location, register, $state, users, bind) {
+        $scope.validateSMSCode = function () {
+            if ($scope.smsVerifyCode == null) {
                 $ionicPopup.alert({
                     title: '错误',
-                    template: '请输入用户名'
+                    template: '请输入短信验证码'
                 });
-            } else if ($scope.password == null) {
+            } else {
+                register.validateSMSCode($scope.smsVerifyCode).then(function success(resp) {
+                    $state.go('register.step2');
+                }, function error(resp) {
+                    $ionicPopup.alert({
+                        title: '错误',
+                        template: '手机号验证码错误'
+                    });
+                });
+            }
+        }
+
+        $scope.register = function () {
+            var pwd = $scope.password;
+            if (pwd == null) {
                 $ionicPopup.alert({
                     title: '错误',
                     template: '请输入密码'
@@ -16,28 +30,41 @@ angular.module('starter.controllers', [])
                     title: '错误',
                     template: '请再次输入密码'
                 });
-            } else if ($scope.password != $scope.confirmPassword) {
+            } else if (pwd != $scope.confirmPassword) {
                 $ionicPopup.alert({
                     title: '错误',
                     template: '两次输入密码不一致'
                 });
             } else {
-                register.stash($scope.account, $scope.password);
-                $state.go('register.step2');
+                register.register(users.getPhone(), pwd).then(function success(resp) {
+                    users.login(pwd).then(function success() {
+                        users.current().then(function success(resp){
+                            console.log(resp);
+                            bind.bind();
+                        });
+                        $state.go('register.success');
+                    }, function error() {
+                    });
+                }, function fail(resp) {
+
+                });
             }
         };
 
-        $scope.register = function () {
-            //register.registerReq($scope.phone, $scope.smsVerifyCode).then(function(){
-            //    alert('success');
-            //});
-            $state.go('register.success');
-        };
-
         $scope.sendSms = function () {
-            //var phone = $scope.phone;
-        };
+            register.sendSMSCode().then(function success(resp) {
+                if (resp.status == 200) {
 
+                }
+            }, function error(resp, data) {
+                if (resp.status == 400) {
+                    $ionicPopup.alert({
+                        title: '错误',
+                        template: '手机号格式错误'
+                    });
+                }
+            });
+        };
     })
 
     .controller('SubjectsCtrl', function ($scope, subjects) {
@@ -67,8 +94,6 @@ angular.module('starter.controllers', [])
                         onTap: function (e) {
                             myPopup.close();
                             $state.go('subjects.investConfirm');
-                            //e.preventDefault();
-
                         }
                     }
                 ]
@@ -79,39 +104,69 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('MobileCtrl', function($scope, $stateParams, users, $state) {
+    .controller('MobileCtrl', function ($scope, $stateParams, users, $state, $ionicPopup, GLOBAL) {
         users.setOpenId($stateParams.openId);
 
-        $scope.nextStep = function() {
-            users.checkPhoneDuplication($scope.phone).then(function(status){
-                if(status==400) {
-                    alert('手机号已注册');
-                } else {
+        $scope.nextStep = function () {
+            users.checkPhoneDuplication($scope.phone).then(function success(resp) {
+                if (GLOBAL.getAccessToken() == null) {
+                    GLOBAL.setAccessToken(resp.headers('ACCESS-TOKEN'));
+                }
+                if (resp.status == 200) {
+                    $state.go('bind')
+                }
+            }, function error(resp) {
+                //console.log(resp.headers('ACCESS-TOKEN'))
+                if (GLOBAL.getAccessToken() == null) {
+                    GLOBAL.setAccessToken(resp.headers('ACCESS-TOKEN'));
+                }
+                if (resp.status == 400) {
+                    $ionicPopup.alert({
+                        title: '错误',
+                        template: '手机号格式错误'
+                    });
+                } else if (resp.status == 404) {
                     $state.go('register');
                 }
             });
         }
     })
 
-    .controller('InvestConfirmCtrl', function() {
+    .controller('InvestConfirmCtrl', function () {
 
     })
 
-    .controller('ProfileCtrl', function($scope, $state) {
-        $scope.myInvestments = function() {
+    .controller('ProfileCtrl', function ($scope, $state) {
+        $scope.myInvestments = function () {
             $state.go('myInvestments');
         }
 
-        $scope.transactionHistory = function() {
+        $scope.transactionHistory = function () {
             $state.go('transactionHistory');
         }
 
     })
 
-    .controller('MySubjectsCtrl', function() {
+    .controller('MySubjectsCtrl', function () {
 
     })
 
-    .controller('BindCtrl', function ($scope) {
-
+    .controller('BindCtrl', function ($scope, bind) {
+        $scope.bind = function () {
+            if ($scope.password == null) {
+                $ionicPopup.alert({
+                    title: '错误',
+                    template: '请输入密码'
+                });
+            } else {
+                users.login($scope.password).then(function success(){
+                    bind.bind();
+                }, function error(){
+                    $ionicPopup.alert({
+                        title: '错误',
+                        template: '密码错误'
+                    });
+                });
+            }
+        }
     });

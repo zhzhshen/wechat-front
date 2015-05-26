@@ -1,32 +1,16 @@
-<ion-view view-title="绑定账户">
-    <ion-content ng-controller="BindCtrl">
-        <div class="list list-inset" style="margin-left:40px;margin-right:40px;margin-bottom:50px;">
-            <label class="item item-input" style="margin-bottom: 20px">
-                <div width="25px"><i class="icon ion-person placeholder-icon" padding="25px"></i></div>
-                <input type="text" ng-model="account" placeholder=" 请输入用户名">
-            </label>
-            <label class="item item-input" style="margin-bottom: 20px">
-                <div width="25px"><i class="icon ion-key placeholder-icon" padding="25px"></i></div>
-                <input type="password" ng-model="password" placeholder="请输入8位以上密码">
-            </label>
-
-            <label class="item" style="border: none;">
-                <button class="button button-full button-positive" ng-click="bind()">
-                    立即绑定
-                </button>
-            </label>
-            <div align="center">
-                <a href="#/retrieve">忘记密码？</a>
+<ion-view view-title="手机号">
+    <ion-content ng-controller="BindCtrl" style="background-color: #f7f4f0;">
+        <div class="list list-inset myList">
+            <div class="item item-input listItem" style="border: none;">
+                <i class="ion-iphone placeholder-icon"></i>
+                <input type="password" ng-model="password" placeholder="请输入密码">
             </div>
         </div>
-
-        <div style="background-color: #ffffff;border-top: #999999 solid thick;height: 100%;">
-            <div style="margin-top:30px; text-align: center;">
-                <div margin="20px">
-                    还没有账户？<i class="ion-arrow-down-c"></i>
-                </div>
-                <a href="#/register">立即注册</a>
-            </div>
+        <div class="downSection">
+            <button class="singleButton"
+                    ng-click="bind()">
+                绑定
+            </button>
         </div>
     </ion-content>
 </ion-view>

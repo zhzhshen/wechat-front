@@ -10,9 +10,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         });
     })
 
+    .constant("midasUrl", "http://52.68.53.104")
+    .constant("domain", "http://localhost:8089")
+
+    .constant('RESOURCES', (function () {
+        var domain = 'http://localhost:8089';
+
+        return {
+            DOMAIN: domain
+        }
+    }))
+
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleText(false);
     })
+
+    .config(function ($httpProvider) {
+        $httpProvider.defaults.withCredentials = true;
+    })
+
+    //.config(['$httpProvider', function ($httpProvider) {
+    //    $httpProvider.defaults.useXDomain = true;
+    //    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //}])
+
+    //.config(function ($sceDelegateProvider) {
+    //    $sceDelegateProvider.resourceUrlWhitelist([
+    //        'self',
+    //        'http://52.68.53.104'
+    //    ]);
+    //})
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -110,10 +137,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             })
 
-            .state('myInvestments',{
+            .state('myInvestments', {
                 url: '/myInvestments',
                 views: {
-                    '@' : {
+                    '@': {
                         templateUrl: 'templates/myInvestments.html'
                     }
                 }
@@ -122,7 +149,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             .state('transactionHistory', {
                 url: '/transactionHistory',
                 views: {
-                    '@' : {
+                    '@': {
                         templateUrl: 'templates/transactionHistory.html'
                     }
                 }

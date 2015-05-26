@@ -1,21 +1,38 @@
 angular.module('starter.services', [])
-    .factory('users', function($http) {
+    .factory("GLOBAL", function () {
+        var accessToken;
+
+        return {
+            setAccessToken: function (val) {
+                accessToken = val;
+            },
+            getAccessToken: function () {
+                return accessToken;
+            }
+        }
+    })
+
+    .factory('users', function ($http, domain, GLOBAL) {
         var openId;
         var phone;
 
         return {
-            setOpenId : function(id) {
+            setOpenId: function (id) {
                 openId = id;
             },
 
-            getOpenId : function() {
+            getOpenId: function () {
                 return openId;
             },
 
-            checkBidingStatus : function(id) {
+            getPhone: function () {
+                return phone;
+            },
+
+            checkBidingStatus: function (id) {
                 var req = {
                     method: 'POST',
-                    url: 'https://pre.quboqu.com/ums/users/wechat-binding-validation',
+                    url: domain + '/ums/users/wechat-binding-validation',
                     data: {
                         'openId': id
                     }
@@ -23,39 +40,39 @@ angular.module('starter.services', [])
                 return $http(req);
             },
 
-            checkPhoneDuplication : function(phone) {
-                this.phone = phone;
+            checkPhoneDuplication: function (p) {
+                phone = p;
                 var req = {
                     method: 'POST',
-                    url: 'https://pre.quboqu.com/ums/users/phone-duplication-verification',
+                    url: domain + '/ums/users/phone-duplication-verification',
                     data: {
                         'phone': phone
                     }
                 };
                 return $http(req);
-            }
-        }
-    })
-
-    .factory('register', function (users) {
-        var account;
-        var password;
-
-        return {
-            stash: function (name, pwd) {
-                account = name;
-                password = pwd;
             },
 
-            registerReq: function (phone, smsVerifyCode) {
+            login : function(pwd){
                 var req = {
                     method: 'POST',
-                    url: 'https://pre.quboqu.com/ums/users/register',
+                    url: domain + '/ums/users/login',
                     data: {
-                        'name': account,
-                        'password': password,
                         'phone': phone,
-                        'smsVerifyCode': smsVerifyCode
+                        'password': pwd
+                    },
+                    headers: {
+                        'ACCESS-TOKEN': GLOBAL.getAccessToken()
+                    }
+                };
+                return $http(req);
+            },
+
+            current: function(){
+                var req = {
+                    method: 'GET',
+                    url: domain + '/ums/users/current',
+                    headers: {
+                        'ACCESS-TOKEN': GLOBAL.getAccessToken()
                     }
                 };
                 return $http(req);
@@ -63,14 +80,80 @@ angular.module('starter.services', [])
         }
     })
 
-    .factory('subjects', function ($http) {
+    .factory('bind', function(GLOBAL, users, $http, domain){
+        return {
+            bind: function(){
+                var req = {
+                    method: 'POST',
+                    url: domain + '/ums/users/',
+                    data: {
+                        'openId': users.getOpenId()
+                    },
+                    headers: {
+                        'ACCESS-TOKEN': GLOBAL.getAccessToken()
+                    }
+                };
+                return $http(req);
+            }
+        }
+    })
+
+    .factory('register', function (users, $http, domain, GLOBAL) {
+        return {
+            register: function (phone, password) {
+                var req = {
+                    method: 'POST',
+                    url: domain + '/ums/users/register',
+                    data: {
+                        'phone': phone,
+                        'password': password
+                    },
+                    headers: {
+                        'ACCESS-TOKEN': GLOBAL.getAccessToken()
+                    }
+                };
+                return $http(req);
+            },
+
+            sendSMSCode: function () {
+                var phone = users.getPhone();
+                var req = {
+                    method: 'POST',
+                    url: domain + '/ums/users/register/notification',
+                    data: {
+                        'phone': phone
+                    },
+                    headers: {
+                        'ACCESS-TOKEN': GLOBAL.getAccessToken()
+                    }
+                };
+                return $http(req);
+            },
+
+            validateSMSCode: function (verificationCode) {
+                var req = {
+                    method: 'POST',
+                    url: domain + '/ums/users/register/notification/verification',
+                    data: {
+                        'smsVerifyCode': verificationCode
+                    },
+                    headers: {
+                        'ACCESS-TOKEN': GLOBAL.getAccessToken()
+                    }
+                };
+                return $http(req);
+            }
+        }
+    })
+
+    .factory('subjects', function ($http, domain, GLOBAL) {
         var subjects;
 
         return {
             retrieveSubjects: function () {
                 return $http({
                     method: 'GET',
-                    url: 'https://pre.quboqu.com/api/subjects'
+                    url: domain + '/api/subjects'
                 });
             },
             get: function (subjectId) {
