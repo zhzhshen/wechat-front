@@ -146,7 +146,7 @@ angular.module('starter.services', [])
         }
     })
 
-    .factory('subjects', function ($http, domain, GLOBAL) {
+    .factory('subjects', function ($http, domain) {
         var subjects;
 
         return {

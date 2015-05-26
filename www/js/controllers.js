@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
             } else {
                 register.register(users.getPhone(), pwd).then(function success(resp) {
                     users.login(pwd).then(function success() {
-                        users.current().then(function success(resp){
+                        users.current().then(function success(resp) {
                             console.log(resp);
                             bind.bind();
                         });
@@ -68,8 +68,9 @@ angular.module('starter.controllers', [])
     })
 
     .controller('SubjectsCtrl', function ($scope, subjects) {
-        subjects.retrieveSubjects().then(function (data) {
-            $scope.subjects = angular.fromJson(data.data).items;
+        subjects.retrieveSubjects().then(function (resp) {
+            console.log(resp.data);
+            $scope.subjects = angular.fromJson(resp.data).items;
         });
     })
 
@@ -108,27 +109,39 @@ angular.module('starter.controllers', [])
         users.setOpenId($stateParams.openId);
 
         $scope.nextStep = function () {
-            users.checkPhoneDuplication($scope.phone).then(function success(resp) {
-                if (GLOBAL.getAccessToken() == null) {
-                    GLOBAL.setAccessToken(resp.headers('ACCESS-TOKEN'));
-                }
-                if (resp.status == 200) {
-                    $state.go('bind')
-                }
-            }, function error(resp) {
-                //console.log(resp.headers('ACCESS-TOKEN'))
-                if (GLOBAL.getAccessToken() == null) {
-                    GLOBAL.setAccessToken(resp.headers('ACCESS-TOKEN'));
-                }
-                if (resp.status == 400) {
-                    $ionicPopup.alert({
-                        title: '错误',
-                        template: '手机号格式错误'
-                    });
-                } else if (resp.status == 404) {
-                    $state.go('register');
-                }
-            });
+            var phone = $scope.phone;
+            if (phone == null || phone=='') {
+                $ionicPopup.alert({
+                    title: '错误',
+                    template: '请输入手机号'
+                });
+            } else if (isNaN(phone) || phone.length != 11) {
+                $ionicPopup.alert({
+                    title: '错误',
+                    template: '手机号格式错误'
+                });
+            } else {
+                users.checkPhoneDuplication($scope.phone).then(function success(resp) {
+                    if (GLOBAL.getAccessToken() == null) {
+                        GLOBAL.setAccessToken(resp.headers('ACCESS-TOKEN'));
+                    }
+                    if (resp.status == 200) {
+                        $state.go('bind')
+                    }
+                }, function error(resp) {
+                    if (GLOBAL.getAccessToken() == null) {
+                        GLOBAL.setAccessToken(resp.headers('ACCESS-TOKEN'));
+                    }
+                    if (resp.status == 400) {
+                        $ionicPopup.alert({
+                            title: '错误',
+                            template: '手机号格式错误'
+                        });
+                    } else if (resp.status == 404) {
+                        $state.go('register');
+                    }
+                });
+            }
         }
     })
 
@@ -151,7 +164,7 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('BindCtrl', function ($scope, bind) {
+    .controller('BindCtrl', function ($scope, bind, users) {
         $scope.bind = function () {
             if ($scope.password == null) {
                 $ionicPopup.alert({
@@ -159,9 +172,9 @@ angular.module('starter.controllers', [])
                     template: '请输入密码'
                 });
             } else {
-                users.login($scope.password).then(function success(){
+                users.login($scope.password).then(function success() {
                     bind.bind();
-                }, function error(){
+                }, function error() {
                     $ionicPopup.alert({
                         title: '错误',
                         template: '密码错误'
