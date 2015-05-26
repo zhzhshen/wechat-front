@@ -82,10 +82,10 @@ angular.module('starter.services', [])
 
     .factory('bind', function(GLOBAL, users, $http, domain){
         return {
-            bind: function(){
+            bind: function(id){
                 var req = {
                     method: 'POST',
-                    url: domain + '/ums/users/',
+                    url: domain + '/ums/users/'+id+'/bind-wechat',
                     data: {
                         'openId': users.getOpenId()
                     },
@@ -153,7 +153,8 @@ angular.module('starter.services', [])
             retrieveSubjects: function () {
                 return $http({
                     method: 'GET',
-                    url: domain + '/api/subjects'
+                    //url: domain + '/api/subjects'
+                    url: 'https://pre.quboqu.com/api/subjects'
                 });
             },
             get: function (subjectId) {

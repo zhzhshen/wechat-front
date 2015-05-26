@@ -51,10 +51,12 @@ angular.module('starter.controllers', [])
                 register.register(users.getPhone(), pwd).then(function success(resp) {
                     users.login(pwd).then(function success() {
                         users.current().then(function success(resp) {
-                            console.log(resp);
-                            bind.bind();
+                            bind.bind(resp.data['id']).then(function success() {
+                                $state.go('register.success');
+                            }, function error() {
+
+                            });
                         });
-                        $state.go('register.success');
                     }, function error() {
                     });
                 }, function fail(resp) {
@@ -176,7 +178,7 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('BindCtrl', function ($scope, bind, users, $ionicPopup) {
+    .controller('BindCtrl', function ($scope, bind, users, $ionicPopup, $state) {
         $scope.bind = function () {
             var pwd = $scope.password;
             if (pwd == null || pwd == '') {
@@ -191,7 +193,13 @@ angular.module('starter.controllers', [])
                 });
             } else {
                 users.login($scope.password).then(function success() {
-                    bind.bind();
+                    users.current().then(function success(resp) {
+                        bind.bind(resp.data['id']).then(function success() {
+                            $state.go('register.success');
+                        }, function error() {
+
+                        });
+                    });
                 }, function error() {
                     $ionicPopup.alert({
                         title: '错误',
