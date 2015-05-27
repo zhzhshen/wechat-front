@@ -153,8 +153,8 @@ angular.module('starter.services', [])
             retrieveSubjects: function () {
                 return $http({
                     method: 'GET',
-                    //url: domain + '/api/subjects'
-                    url: 'https://pre.quboqu.com/api/subjects'
+                    url: domain + '/api/subjects'
+                    //url: 'https://pre.quboqu.com/api/subjects'
                 });
             },
             get: function (subjectId) {

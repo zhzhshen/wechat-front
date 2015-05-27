@@ -153,16 +153,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                         templateUrl: 'templates/transactionHistory.html'
                     }
                 }
-            })
-
-            .state('mySubjects', {
-                url: '/mySubjects',
-                views: {
-                    '@': {
-                        templateUrl: 'templates/mySubjects.html',
-                        controller: 'MySubjectsCtrl'
-                    }
-                }
             });
 
         // if none of the above states are matched, use this as the fallback

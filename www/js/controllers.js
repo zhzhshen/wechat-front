@@ -174,10 +174,6 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('MySubjectsCtrl', function () {
-
-    })
-
     .controller('BindCtrl', function ($scope, bind, users, $ionicPopup, $state) {
         $scope.bind = function () {
             var pwd = $scope.password;
