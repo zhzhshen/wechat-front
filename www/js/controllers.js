@@ -53,13 +53,23 @@ angular.module('starter.controllers', [])
                         users.current().then(function success(resp) {
                             bind.bind(resp.data['id']).then(function success() {
                                 $state.go('register.success');
-                            }, function error() {
-
+                            }, function error(resp) {
+                                if (resp.status == 403) {
+                                    $ionicPopup.alert({
+                                        title: '错误',
+                                        template: '密码错误'
+                                    });
+                                } else {
+                                    $ionicPopup.alert({
+                                        title: '错误',
+                                        template: '微信已绑定'
+                                    });
+                                }
                             });
                         });
                     }, function error() {
                     });
-                }, function fail(resp) {
+                }, function error(resp) {
 
                 });
             }
@@ -84,10 +94,11 @@ angular.module('starter.controllers', [])
                 });
 
                 $interval(function () {
-                    if($scope.countDown > 1) {
+                    if ($scope.countDown > 1) {
                         $scope.countDown = $scope.countDown - 1
                     } else {
-                        $scope.valid=true;
+                        $scope.valid = true;
+                        $scope.countDown = 120;
                     }
                 }, 1000, 120);
             }
@@ -206,7 +217,17 @@ angular.module('starter.controllers', [])
                         bind.bind(resp.data['id']).then(function success() {
                             $state.go('register.success');
                         }, function error() {
-
+                            if (resp.status == 403) {
+                                $ionicPopup.alert({
+                                    title: '错误',
+                                    template: '密码错误'
+                                });
+                            } else {
+                                $ionicPopup.alert({
+                                    title: '错误',
+                                    template: '微信已绑定'
+                                });
+                            }
                         });
                     });
                 }, function error() {
