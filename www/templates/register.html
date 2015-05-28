@@ -19,8 +19,12 @@
             <div class="item item-input listItem" style="border: none;">
                 <i class="ion-image placeholder-icon"></i>
                 <input type="text" ng-model="smsVerifyCode" placeholder="手机验证码">
-                <button class="inputButton" ng-click="sendSms()" style="width: 150px;">
+                <!--<timer interval="1000" countdown="100">{{countdown}}</timer>-->
+                <button class="inputButton" ng-show="valid" ng-click="sendSms()" style="width: 150px;">
                     获取验证码
+                </button>
+                <button class="inputButton" ng-show="!valid" ng-click="sendSms()" style="width: 150px;" disabled>
+                    {{countDown}}秒后重发
                 </button>
             </div>
         </div>

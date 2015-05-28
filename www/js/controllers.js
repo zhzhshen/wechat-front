@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-    .controller('RegisterCtrl', function ($scope, $http, $ionicPopup, $location, register, $state, users, bind) {
+    .controller('RegisterCtrl', function ($scope, $http, $ionicPopup, $location, register, $state, users, bind, $interval) {
         $scope.validateSMSCode = function () {
             var code = $scope.smsVerifyCode;
             if (code == null || code == '') {
@@ -65,19 +65,32 @@ angular.module('starter.controllers', [])
             }
         };
 
+        $scope.countDown = 120;
+        $scope.valid = true;
         $scope.sendSms = function () {
-            register.sendSMSCode().then(function success(resp) {
-                if (resp.status == 200) {
+            if ($scope.valid) {
+                $scope.valid = false;
+                register.sendSMSCode().then(function success(resp) {
+                    if (resp.status == 200) {
 
-                }
-            }, function error(resp, data) {
-                if (resp.status == 400) {
-                    $ionicPopup.alert({
-                        title: '错误',
-                        template: '手机号格式错误'
-                    });
-                }
-            });
+                    }
+                }, function error(resp) {
+                    if (resp.status == 400) {
+                        $ionicPopup.alert({
+                            title: '错误',
+                            template: '手机号格式错误'
+                        });
+                    }
+                });
+
+                $interval(function () {
+                    if($scope.countDown > 1) {
+                        $scope.countDown = $scope.countDown - 1
+                    } else {
+                        $scope.valid=true;
+                    }
+                }, 1000, 120);
+            }
         };
     })
 
