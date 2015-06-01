@@ -108,8 +108,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             })
 
             .state('mobileCheck', {
-                url: '/mobileCheck/:openId',
-                //url: '/mobileCheck',
+                //url: '/mobileCheck/:openId',
+                url: '/mobileCheck',
                 views: {
                     '@': {
                         templateUrl: 'templates/mobileCheck.html',

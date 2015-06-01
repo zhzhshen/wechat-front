@@ -143,11 +143,13 @@ angular.module('starter.controllers', ['toaster'])
         };
     })
 
-    .controller('MobileCtrl', function ($rootScope, $scope, $stateParams, users, $state, $ionicPopup, GLOBAL, toaster) {
+    .controller('MobileCtrl', function ($rootScope, $scope, $stateParams, users, $state, $ionicPopup, GLOBAL, toaster, openId) {
 
-        users.setOpenId($stateParams.openId);
+        //users.setOpenId($stateParams.openId);
 
+        users.setOpenId(openId);
         //console.log($rootScope.user.openId);
+
 
         $scope.nextStep = function () {
             var phone = $scope.phone;
