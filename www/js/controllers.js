@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['toaster'])
     .controller('RegisterCtrl', function ($scope, $http, $ionicPopup, $location, register, $state, users, bind, $interval) {
         $scope.validateSMSCode = function () {
             var code = $scope.smsVerifyCode;
@@ -143,16 +143,23 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('MobileCtrl', function ($scope, $stateParams, users, $state, $ionicPopup, GLOBAL) {
+    .controller('MobileCtrl', function ($rootScope, $scope, $stateParams, users, $state, $ionicPopup, GLOBAL, toaster) {
+
         users.setOpenId($stateParams.openId);
+
+        //console.log($rootScope.user.openId);
 
         $scope.nextStep = function () {
             var phone = $scope.phone;
             if (phone == null || phone == '') {
-                $ionicPopup.alert({
-                    title: '错误',
-                    template: '请输入手机号'
-                });
+                //$ionicPopup.alert({
+                //    title: '错误',
+                //    template: '请输入手机号'
+                //});
+                //toaster.pop('success', "title", "text");
+                toaster.pop('error', "title", "text");
+                //toaster.pop('warning', "title", "text");
+                //toaster.pop('note', "title", "text");
             } else if (isNaN(phone) || phone.length != 11) {
                 $ionicPopup.alert({
                     title: '错误',

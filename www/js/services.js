@@ -52,7 +52,7 @@ angular.module('starter.services', [])
                 return $http(req);
             },
 
-            login : function(pwd){
+            login: function (pwd) {
                 var req = {
                     method: 'POST',
                     url: domain + '/ums/users/login',
@@ -67,7 +67,7 @@ angular.module('starter.services', [])
                 return $http(req);
             },
 
-            current: function(){
+            current: function () {
                 var req = {
                     method: 'GET',
                     url: domain + '/ums/users/current',
@@ -80,12 +80,12 @@ angular.module('starter.services', [])
         }
     })
 
-    .factory('bind', function(GLOBAL, users, $http, domain){
+    .factory('bind', function (GLOBAL, users, $http, domain) {
         return {
-            bind: function(id){
+            bind: function (id) {
                 var req = {
                     method: 'POST',
-                    url: domain + '/ums/users/'+id+'/bind-wechat',
+                    url: domain + '/ums/users/' + id + '/bind-wechat',
                     data: {
                         'openId': users.getOpenId()
                     },
@@ -153,8 +153,8 @@ angular.module('starter.services', [])
             retrieveSubjects: function () {
                 return $http({
                     method: 'GET',
-                    url: domain + '/api/subjects'
-                    //url: 'https://pre.quboqu.com/api/subjects'
+                    //url: domain + '/api/subjects'
+                    url: 'https://pre.quboqu.com/api/subjects'
                 });
             },
             get: function (subjectId) {
@@ -169,4 +169,28 @@ angular.module('starter.services', [])
                 return null;
             }
         }
-    });
+    })
+
+    .factory('WechatInterceptor', ["$q", "$rootScope", function ($q, $rootScope) {
+        return {
+            request: function (config) {
+                config.headers["openId"] = $rootScope.user.openId;
+                return config;
+            },
+            responseError: function (response) {
+                var data = response.data;
+                // 判断错误码，如果是未登录
+                if (data["errorCode"] == "500999") {
+                    // 清空用户本地token存储的信息，如果
+                    $rootScope.user = {token: ""};
+                    // 全局事件，方便其他view获取该事件，并给以相应的提示或处理
+                    $rootScope.$emit("userIntercepted", "notLogin", response);
+                }
+                // 如果是登录超时
+                if (data["errorCode"] == "500998") {
+                    $rootScope.$emit("userIntercepted", "sessionOut", response);
+                }
+                return $q.reject(response);
+            }
+        };
+    }]);

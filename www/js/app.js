@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCookies'])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -6,6 +6,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
             if (window.StatusBar) {
                 StatusBar.styleLightContent();
+            }
+        });
+    })
+
+    .run(function ($rootScope, $cookies) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            if (toState.name == 'mobileCheck') {
+
+                //console.log($cookies);
+                //$rootScope.user.openId = $cookies.openId;
             }
         });
     })
@@ -21,7 +31,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .config(function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     })
-
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
@@ -100,6 +109,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
             .state('mobileCheck', {
                 url: '/mobileCheck/:openId',
+                //url: '/mobileCheck',
                 views: {
                     '@': {
                         templateUrl: 'templates/mobileCheck.html',
