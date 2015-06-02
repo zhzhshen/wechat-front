@@ -21,8 +21,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
     .constant("midasUrl", "http://52.68.53.104")
-    //.constant("domain", "http://localhost:8089")
-    .constant("domain", "http://52.68.149.90")
+    //.constant("domain", "http://localhost:8089/midas")
+    .constant("domain", "http://www.davidlin.science/midas")
 
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleText(false);
@@ -31,11 +31,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .config(function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     })
-    .config(function ($stateProvider, $urlRouterProvider) {
+
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+
         $stateProvider
             .state('home', {
                 url: '/',
                 templateUrl: 'templates/navigation.html'
+            })
+
+            .state('mobileCheck', {
+                //url: '/mobileCheck/:openId',
+                url: '/mobileCheck',
+                views: {
+                    '@': {
+                        templateUrl: 'templates/mobileCheck.html',
+                        controller: 'MobileCtrl'
+                    }
+                }
             })
 
             .state('bind', {
@@ -107,16 +124,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 }
             })
 
-            .state('mobileCheck', {
-                //url: '/mobileCheck/:openId',
-                url: '/mobileCheck',
-                views: {
-                    '@': {
-                        templateUrl: 'templates/mobileCheck.html',
-                        controller: 'MobileCtrl'
-                    }
-                }
-            })
 
             .state('profile', {
                 url: '/profile',
