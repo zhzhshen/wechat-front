@@ -1,0 +1,22 @@
+doctype html
+html
+head
+    meta(charset='utf-8')
+    meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width')
+    |     
+    link(href='lib/ionic/css/ionic.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+    link(href='css/toaster.css', rel='stylesheet')
+    |     
+    script(src='lib/ionic/js/ionic.bundle.js')
+    script(src='cordova.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js')
+    |     
+    script(src='js/app.js')
+    script(src='js/controllers.js')
+    script(src='js/services.js')
+    script(src='js/toaster.js')
+body(ng-app='starter', style='margin: 0px; height: 100%;')
+    script.
+        angular.module('starter').constant('openId','#{openId}');
+    ion-nav-view
